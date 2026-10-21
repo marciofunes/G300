@@ -1,0 +1,432 @@
+{
+  "targetName": "GROB G300 Machining Center",
+  "sourceImage": "g300-reference.png",
+  "preSpecAssessment": {
+    "objectClass": {
+      "primaryType": "horizontal 5-axis machining center (enclosed)",
+      "primaryDomain": "object",
+      "formLanguage": [
+        "geometric",
+        "cuboid enclosure",
+        "extruded profiles",
+        "cylindrical rotating parts"
+      ],
+      "structureKind": [
+        "assembly",
+        "enclosure with exposed work area and aggregate bay"
+      ],
+      "motionPotential": [
+        "spindle rotation",
+        "X/Y/Z linear slides",
+        "A-axis trunnion tilt",
+        "B-axis table rotation",
+        "tool magazine indexing",
+        "chip conveyor",
+        "pump motor rotation",
+        "door slide"
+      ],
+      "materialFamilies": [
+        "painted sheet steel",
+        "machined steel",
+        "tinted glass",
+        "cast motor housings",
+        "black polymer"
+      ],
+      "notes": "Cutaway studio render with roof partially removed and aggregate doors removed."
+    },
+    "complexity": {
+      "tier": "complex",
+      "scores": {
+        "silhouetteComplexity": 2,
+        "componentCount": 3,
+        "hierarchyDepth": 3,
+        "repetitionDensity": 2,
+        "materialLayerCount": 2,
+        "localDetailDensity": 2,
+        "occlusionRisk": 3,
+        "actionReadinessNeed": 3
+      },
+      "estimatedCounts": {
+        "macroComponents": 8,
+        "mesoComponents": 18,
+        "microFeatureGroups": 7,
+        "materialLayers": 8,
+        "repetitionSystems": 4
+      },
+      "reasoning": [
+        "Large hard-surface assembly with 8 macro assemblies and many meso parts.",
+        "Animation of 7 axes/pumps needed for Digital Twin demo.",
+        "Hidden faces and internal magazine raise occlusion risk."
+      ]
+    },
+    "specDepthDecision": {
+      "requiredDepth": "complex",
+      "minimumComponentLevels": [
+        "macro",
+        "meso",
+        "micro"
+      ],
+      "needsRepetitionSystems": true,
+      "needsMaterialLocalOverrides": true,
+      "needsMultipleReviewViews": true,
+      "needsActionReadyHierarchy": true,
+      "rationale": "Choose simple/moderate/complex/ultra-complex from observed structure, not from a hardcoded domain."
+    },
+    "unknownsToResolveBeforeImplementation": [
+      "Rear face and far long side hidden: mirror panel rhythm, low confidence.",
+      "Disc tool magazine hidden under roof housing: inferred position.",
+      "Exact dimensions inferred from proportions (1.75 x 4.0 x 2.9 m)."
+    ],
+    "detailInventory": {
+      "scanMethod": "component-zones",
+      "targetMinDetails": 10,
+      "note": "Enumerate every identity-defining small detail before authoring the spec. Each detail must map to a component.localFeatures entry or material.localOverrides entry, never prose only. Use forge/stage1_intake/build_detail_inventory.py to scan zones.",
+      "details": [
+        {
+          "id": "blue-top-band",
+          "category": "band",
+          "description": "Vivid blue perimeter band capping the enclosure top",
+          "mapsTo": "enclosure.topBand",
+          "zone": "full-object",
+          "confidence": 0.8
+        },
+        {
+          "id": "grob-badge",
+          "category": "logo",
+          "description": "Blue rectangular GROB badge with white border on the band, rear end of long side",
+          "mapsTo": "enclosure.topBand",
+          "zone": "full-object",
+          "confidence": 0.8
+        },
+        {
+          "id": "g300-lettering",
+          "category": "inscription",
+          "description": "Large italic grey G300 lettering on front face panel",
+          "mapsTo": "enclosure.frontPanel",
+          "zone": "full-object",
+          "confidence": 0.8
+        },
+        {
+          "id": "door-frosted-window",
+          "category": "panel",
+          "description": "Sliding work-area door with frosted ribbed window",
+          "mapsTo": "workArea.door",
+          "zone": "full-object",
+          "confidence": 0.8
+        },
+        {
+          "id": "spindle-hsk-nose",
+          "category": "mechanical",
+          "description": "Horizontal spindle nose with HSK tool interface protruding from column wall",
+          "mapsTo": "workArea.spindle",
+          "zone": "full-object",
+          "confidence": 0.8
+        },
+        {
+          "id": "trunnion-cradle",
+          "category": "mechanical",
+          "description": "White trunnion cradle with circular rotary pallet table",
+          "mapsTo": "workArea.trunnion",
+          "zone": "full-object",
+          "confidence": 0.8
+        },
+        {
+          "id": "table-hole-pattern",
+          "category": "repetition",
+          "description": "Grid of holes / T-slots on rotary table top",
+          "mapsTo": "workArea.table",
+          "zone": "full-object",
+          "confidence": 0.8
+        },
+        {
+          "id": "operator-panel",
+          "category": "hmi",
+          "description": "Operator panel with screen, keypad, red E-stop on swivel arm",
+          "mapsTo": "operatorPanel",
+          "zone": "full-object",
+          "confidence": 0.8
+        },
+        {
+          "id": "inspection-windows",
+          "category": "panel",
+          "description": "Two dark tinted inspection windows on long side",
+          "mapsTo": "enclosure.longSide",
+          "zone": "full-object",
+          "confidence": 0.8
+        },
+        {
+          "id": "arched-cutout",
+          "category": "opening",
+          "description": "Black arched service cut-out on long side",
+          "mapsTo": "enclosure.longSide",
+          "zone": "full-object",
+          "confidence": 0.8
+        },
+        {
+          "id": "aggregate-bay",
+          "category": "assembly",
+          "description": "Open aggregate bay with shelf, motor pumps and finned hydraulic tank",
+          "mapsTo": "aggregateBay",
+          "zone": "full-object",
+          "confidence": 0.8
+        },
+        {
+          "id": "motor-fins",
+          "category": "repetition",
+          "description": "Cooling fins on vertical pump motors",
+          "mapsTo": "aggregateBay.pumps",
+          "zone": "full-object",
+          "confidence": 0.8
+        },
+        {
+          "id": "rear-tank",
+          "category": "mechanical",
+          "description": "Horizontal cylindrical tank on inclined rear-top frame",
+          "mapsTo": "coolantModule",
+          "zone": "full-object",
+          "confidence": 0.8
+        },
+        {
+          "id": "door-handles",
+          "category": "hardware",
+          "description": "Black vertical handles on front panel and conveyor block",
+          "mapsTo": "enclosure.frontPanel",
+          "zone": "full-object",
+          "confidence": 0.8
+        }
+      ]
+    },
+    "anatomy": {
+      "applies": false,
+      "styleHeads": 0.0,
+      "proportions": {
+        "headUnit": 0.0,
+        "torso": 0.0,
+        "legs": 0.0,
+        "shoulderWidth": 0.0,
+        "hipWidth": 0.0
+      },
+      "pose": {
+        "type": "unassessed",
+        "jointAngles": {}
+      },
+      "faceLandmarks": {
+        "eyeLine": 0.0,
+        "eyeSpacing": 0.0,
+        "noseBase": 0.0,
+        "mouthLine": 0.0,
+        "hairline": 0.0
+      },
+      "features": [],
+      "confidence": 0.0,
+      "note": "Only meaningful when objectClass.primaryDomain is character or hybrid. Set applies=true and fill from forge/stage1_intake/extract_landmarks.py. See grimoire/character/reconstruction.md and grimoire/character/likeness_maximization.md."
+    },
+    "sourceImage": "g300-reference.png"
+  },
+  "qualityContract": {
+    "qualityBar": "complex",
+    "definitionOfDone": [
+      "The rendered model matches the reference silhouette, primary proportions, visible component hierarchy, material response, and most recognizable local features for the selected fidelity tier."
+    ],
+    "minimumSpecDepth": {
+      "macroComponents": 3,
+      "mesoComponents": 8,
+      "microFeatureGroups": 5,
+      "materialLayers": 3,
+      "repetitionSystems": 1,
+      "reviewViewpoints": 4
+    },
+    "featureGroups": [
+      {
+        "id": "overall-silhouette",
+        "name": "Overall silhouette and proportions",
+        "required": true,
+        "qualityCriteria": [
+          "Bounding shape, dominant curves, negative spaces, and scale relationships are explicitly described."
+        ],
+        "evidenceRefs": [
+          "g300-reference.png"
+        ],
+        "failureModes": [
+          "model reads as a generic placeholder instead of the reference object",
+          "major proportions are guessed without evidence"
+        ]
+      },
+      {
+        "id": "primary-structure",
+        "name": "Primary structure and hierarchy",
+        "required": true,
+        "qualityCriteria": [
+          "Major parts, joints, seams, contact points, and parent-child relationships are named before code generation."
+        ],
+        "evidenceRefs": [
+          "g300-reference.png"
+        ],
+        "failureModes": [
+          "large visible parts are merged into one mesh",
+          "component hierarchy is too shallow for the observed complexity"
+        ]
+      },
+      {
+        "id": "attachment-joint-correctness",
+        "name": "Attachment and joint correctness",
+        "required": true,
+        "qualityCriteria": [
+          "Every visible child appendage, branch, limb, handle, connector, tube, cable, horn, wing, leg, or hinged part has an attachment contract with parent socket, localStart/localEnd, contact type, embed/overlap, and gap tolerance."
+        ],
+        "evidenceRefs": [
+          "g300-reference.png"
+        ],
+        "failureModes": [
+          "child part root floats away from the parent",
+          "branch/limb/tube is centered in space instead of pivoting from its root",
+          "parent-child transform mixes world and local coordinates"
+        ]
+      },
+      {
+        "id": "surface-material-response",
+        "name": "Surface material response",
+        "required": true,
+        "qualityCriteria": [
+          "Albedo zones, roughness, normal/bump/displacement intent, cavity dirt, edge wear, and local overrides are specified where visible.",
+          "Important materials define independent albedo, roughness, height/normal, and AO responses instead of reusing one texture for unrelated PBR channels.",
+          "Surface response is decomposed into macro, meso, and micro frequency bands with scale and amplitude tied to object scale."
+        ],
+        "evidenceRefs": [
+          "g300-reference.png"
+        ],
+        "failureModes": [
+          "surface looks like flat plastic",
+          "local material variation is missing or not tied to image evidence"
+        ]
+      },
+      {
+        "id": "reference-lookdev",
+        "name": "Reference color, material, and lighting response",
+        "required": true,
+        "qualityCriteria": [
+          "Material-pass names the reference-derived albedo palette, roughness variation, tactile normal/bump/displacement response, and local masks.",
+          "When a source image is available, run reference PBR extraction and require confidence >= 0.7 before treating maps as implementation-ready.",
+          "Lighting-pass names key/fill/rim or environment light, exposure, tone mapping, background, and contact shadow behavior.",
+          "Neutral, grazing-angle, and reference-matched renders prove that surface relief survives relighting and is not painted into albedo."
+        ],
+        "evidenceRefs": [
+          "g300-reference.png"
+        ],
+        "failureModes": [
+          "model has acceptable shape but reads as flat shaded or plastic",
+          "colors are a generic average instead of reference-observed local color zones",
+          "lighting is evenly ambient and cannot reproduce the source value range"
+        ]
+      }
+    ],
+    "visualDeltaChecks": [
+      "silhouette and negative-space delta",
+      "component hierarchy depth delta",
+      "repetition density and distribution delta",
+      "material albedo/roughness/normal response delta",
+      "local feature placement and scale delta"
+    ],
+    "antiShallowSpecRules": [
+      "Do not proceed to code if qualityContract.qualityBar is unassessed.",
+      "Do not proceed to code if the spec only contains a root component for a moderate or complex object.",
+      "Do not proceed to code if required featureGroups are not represented by componentTree, materials, or repetitionSystems.",
+      "Do not proceed to code if visible local features are described only in prose and not attached to components/materials/evidenceRefs.",
+      "Do not proceed past structural-pass if attached child parts lack attachment.parentSocket, localStart, localEnd, embedDepth/overlap, and gapTolerance.",
+      "Do not pass material look-dev when albedo is reused as roughness, height, normal, or AO.",
+      "Do not pass material look-dev without macro, meso, and micro surface frequency bands for close-up materials.",
+      "Do not pass reference-fidelity material look-dev from a source image without usable referencePbr maps or an explicit documented limitation.",
+      "Do not patch a spec with extracted PBR maps when extraction confidence is below the target threshold unless the user explicitly accepts lower fidelity.",
+      "Do not place adjacent separate-geometry parts below 0.02 world-unit seam overlap (source: grimoire/build/geometry_patterns.md).",
+      "Do not satisfy raised or recessed relief, fasteners, or grip structure with a map alone when the feature affects form; use geometry or displacement (source: grimoire/build/geometry_patterns.md)."
+    ]
+  },
+  "authoringInstruction": "Fill observed object class, complexity reasoning, featureGroups, visualDeltaChecks, and unknowns before generating or implementing ObjectSculptSpec.",
+  "localSpecSearch": {
+    "collection": "core_3d",
+    "query": "GROB G300 Machining Center machine tool enclosure spindle rotary table hard surface panels",
+    "index": {
+      "status": "rebuilt",
+      "reason": "missing",
+      "fingerprint": "62f2831e1d52eeb6dbb94a87c44fa25b1f4926626a7b1f8c2bcadc63e04e9471"
+    },
+    "matches": [
+      {
+        "record_id": "core.description-honest-uncertainty-single-image-limits-convention",
+        "file_path": "docs/raw/img2threejs-skill-dataset.json",
+        "heading": null,
+        "key_path": "categories.description_conventions[6]",
+        "score": 3.986222861816,
+        "snippets": [
+          "... \u0111\u1ecbnh' thay v\u00ec b\u1ecba ra chi ti\u1ebft tr\u00f4ng h\u1ee3p l\u00fd nh\u01b0ng kh\u00f4ng th\u1ea5y trong \u1ea3nh tham chi\u1ebfu. Recognition cues: Any attribute for a surface not visible in the reference image should be flagged explicitly rather than filled with a guessed value; This is ..."
+        ],
+        "source_refs": [
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.description_conventions[6]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation"
+          }
+        ]
+      },
+      {
+        "record_id": "core.topology-intent",
+        "file_path": "grimoire/glossary/3d_vocabulary.md",
+        "heading": "Geometry And Topology",
+        "key_path": null,
+        "score": 3.237907501419,
+        "snippets": [
+          "Topology intent classifies a surface as hard-surface blockout, subdivision-ready, low-poly prop, organic deformed mesh, or alpha-card cluster."
+        ],
+        "source_refs": [
+          {
+            "path": "grimoire/glossary/3d_vocabulary.md",
+            "heading": "Geometry And Topology",
+            "key_path": null
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "grimoire/glossary/3d_vocabulary.md"
+          },
+          {
+            "kind": "notebooklm-research",
+            "ref": "notebooklm:4b03c2f9-8393-411f-b5b4-039ab9532843",
+            "note": "Validated generic schema vocabulary; numeric claims remain backed by local source_refs."
+          }
+        ]
+      },
+      {
+        "record_id": "core.pbr-emission",
+        "file_path": "docs/raw/img2threejs-skill-dataset.json",
+        "heading": null,
+        "key_path": "categories.material_pbr[7]",
+        "score": 3.08472344404,
+        "snippets": [
+          "Self-illuminating surface layer independent of scene lighting, used for glowing indicators or self-illum masks. L\u1edbp b\u1ec1 m\u1eb7t t\u1ef1 ph\u00e1t s\u00e1ng \u0111\u1ed9c l\u1eadp v\u1edbi \u00e1nh s\u00e1ng c\u1ea3nh, d\u00f9ng cho \u0111\u00e8n b\u00e1o ph\u00e1t s\u00e1ng ho\u1eb7c m\u1eb7t n\u1ea1 self-illum. Recognition cues: A region ..."
+        ],
+        "source_refs": [
+          {
+            "path": "docs/raw/img2threejs-skill-dataset.json",
+            "heading": null,
+            "key_path": "categories.material_pbr[7]"
+          }
+        ],
+        "evidence_refs": [
+          {
+            "kind": "source",
+            "ref": "docs/raw/img2threejs-skill-dataset.json",
+            "note": "img2threejs NotebookLM research distillation"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+services:
+  g300-twin:
+    build: .
+    image: ipman/g300-digital-twin:latest
+    container_name: g300-digital-twin
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+
+  # Desenvolvimento com hot reload: docker compose --profile dev up g300-twin-dev
+  g300-twin-dev:
+    profiles: ["dev"]
+    image: node:22-alpine
+    working_dir: /app
+    command: sh -c "npm ci --no-audit --no-fund && npx vite --host 0.0.0.0 --port 5173"
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./:/app
+      - /app/node_modules
